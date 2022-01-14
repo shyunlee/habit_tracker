@@ -4,47 +4,34 @@ import Habits from "./components/Habits";
 import Nav from "./components/Nav";
 
 class App extends Component {
+  presenter = this.props.presenter
   state = {
-    habits: [
-      { id: 1, name: "Reading", count: 0 },
-      { id: 2, name: "Running", count: 0 },
-      { id: 3, name: "Coding", count: 0 },
-    ],
-  };
+    habits : this.presenter.getHabits()
+  }
+  
+
+  updateState = (habits) => {
+    this.setState({habits})
+  }
 
   handleAddHabit = (name) => {
-    name = name.charAt(0).toUpperCase() + name.slice(1)
-    const habits = [
-      ...this.state.habits,
-      { id: Date.now(), name, count: 0 },
-    ];
-    this.setState({ habits });
+    this.presenter.add(name, this.updateState)
   }
 
   handleIncrement = (id) => {
-    const habits = this.state.habits.map((item) =>
-      item.id === id ? { ...item, count: item.count + 1 } : item
-    );
-    this.setState({ habits });
+    this.presenter.increment(id, this.updateState)
   };
 
   handleDecrement = (habit) => {
-    const habits = this.state.habits.map((item) =>
-      item.id === habit.id
-        ? { ...item, count: item.count <= 0 ? 0 : item.count - 1 }
-        : item
-    );
-    this.setState({ habits });
+    this.presenter.decrement(habit, this.updateState)
   };
 
   handleDelete = (habit) => {
-    const habits = this.state.habits.filter((item) => item.id !== habit.id);
-    this.setState({ habits });
+    this.presenter.delete(habit, this.updateState)
   };
 
   handleReset = () => {
-    const habits = this.state.habits.map(item => item.count !== 0 ? {...item, count:0} : item)
-    this.setState({ habits })
+    this.presenter.reset(this.updateState)
   }
 
   render() {
