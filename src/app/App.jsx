@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./app.css";
-import Habits from "./components/Habits";
-import Nav from "./components/Nav";
+import Habits from "../components/habits/Habits";
+import Nav from "../components/nav/Nav";
 
 class App extends Component {
   presenter = this.props.presenter

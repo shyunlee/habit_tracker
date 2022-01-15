@@ -10,7 +10,7 @@ class Nav extends PureComponent {
             <i className="fas fa-leaf"></i>
           </span>
           <span className="nav-title">Habit Tracker</span>
-          <span className="nav-count">{this.props.totalCount}</span>
+          <span className="nav-count" data-testid='total-count'>{this.props.totalCount}</span>
         </div>
       </nav>
     );

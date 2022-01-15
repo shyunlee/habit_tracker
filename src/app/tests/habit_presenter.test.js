@@ -1,4 +1,4 @@
-import HabitPresenter from "../habit_presenter.js";
+import HabitPresenter from "../habit_presenter";
 
 describe("HabitPresenter", () => {
   let habits = [
